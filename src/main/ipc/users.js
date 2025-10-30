@@ -1,3 +1,8 @@
+/**
+ * Registro de canales IPC relacionados con usuarios.
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerUserIpc(ipcMain, db) {
   ipcMain.handle('login', (event, { correo, contrasena }) => {
     return new Promise((resolve, reject) => {

@@ -1,3 +1,8 @@
+/**
+ * Canales IPC de materiales por dimensión (porAncho/porAlto).
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerMaterialesDimensionIpc(ipcMain, db) {
   ipcMain.handle('getMaterialesDimension', () => {
     return new Promise((resolve, reject) => {

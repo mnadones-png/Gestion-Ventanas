@@ -1,4 +1,9 @@
-// renderer.js - Lógica de la interfaz y navegación con SQLite
+/**
+ * renderer.js - UI y navegación
+ *
+ * Renderiza el layout con sidebar/topbar, gestiona la navegación entre vistas,
+ * alterna el tema claro/oscuro y delega a módulos de vistas y `window.api`.
+ */
 import { showInAppAlert, showInAppConfirm } from './renderer/modals.js';
 import { materialesPorDimension, cargarMaterialesDimension } from './renderer/materiales.js';
 import { imprimirPresupuestos as imprimirPresupuestosModule } from './renderer/printing.js';
@@ -15,6 +20,7 @@ import { state, setState } from './renderer/state.js';
 const app = document.getElementById('app');
 
 // Gestión de tema claro/oscuro
+// Clave de persistencia para tema
 const THEME_KEY = 'fabglass-theme';
 function getTheme() { return localStorage.getItem(THEME_KEY) || 'light'; }
 function applyTheme(theme) {
@@ -24,6 +30,7 @@ function applyTheme(theme) {
   const btn = document.getElementById('theme-toggle');
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
+/** Alterna entre tema claro/oscuro y actualiza el botón */
 function toggleTheme() {
   const next = getTheme() === 'dark' ? 'light' : 'dark';
   applyTheme(next);
@@ -156,6 +163,10 @@ function render() {
 // Inicio en la nueva vista de bienvenida en lugar del login
 let { currentView, fechaActual, gastosMesActivo, mesCerrado, selectedMonth, selectedYear } = state;
 
+/**
+ * Cambia la vista actual de la aplicación y persiste en `state`.
+ * @param {string} view - Identificador de vista (e.g. 'presupuesto').
+ */
 function setView(view) {
   currentView = view;
   setState({ currentView: view });
@@ -166,6 +177,9 @@ const YEAR_MIN = 2025;
 const YEAR_MAX = 2040;
 
 // Nueva vista de bienvenida que reemplaza al login/registro en la UI
+/**
+ * Vista de bienvenida (landing) con botón para iniciar en Presupuesto.
+ */
 function showWelcome() {
   const content = document.getElementById('content');
   const fragment = document.createDocumentFragment();

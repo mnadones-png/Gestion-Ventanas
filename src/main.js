@@ -1,4 +1,12 @@
-// Proceso principal de Electron (bootstrap)
+/**
+ * Proceso principal de Electron (bootstrap)
+ *
+ * Responsabilidades:
+ * - Inicializar la base de datos SQLite y exponer el handler `getDb`.
+ * - Crear la ventana principal (`BrowserWindow`) con `preload.js`.
+ * - Registrar todos los manejadores IPC para comunicación segura con el renderer.
+ * - Gestionar ciclo de vida de la aplicación (ready, activate, window-all-closed).
+ */
 const { app, ipcMain, BrowserWindow } = require('electron');
 const { initDatabase, getDb } = require('./main/database');
 const { createMainWindow } = require('./main/windows');
@@ -12,6 +20,10 @@ const { registerGastosIpc } = require('./main/ipc/gastos');
 const { registerLiquidacionesIpc } = require('./main/ipc/liquidaciones');
 const { registerMaterialesDimensionIpc } = require('./main/ipc/materialesDimension');
 
+/**
+ * Registra manejadores IPC de los distintos módulos de dominio.
+ * @param {import('sqlite3').Database} db - Conexión activa a la base de datos.
+ */
 function registerIpcHandlers(db) {
   registerUserIpc(ipcMain, db);
   registerTiposVentanaIpc(ipcMain, db);

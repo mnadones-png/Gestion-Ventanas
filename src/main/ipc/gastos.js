@@ -1,5 +1,14 @@
+/**
+ * Canales IPC para gestión de gastos e ingresos mensuales.
+ * Incluye creación/eliminación de gastos y consulta por rango mensual.
+ */
 const { formatLocalDate, formatLocalDateTime } = require('../utils/date');
 
+/**
+ * Registra canales relacionados con gastos/ingresos mensuales.
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerGastosIpc(ipcMain, db) {
   ipcMain.handle('agregarGasto', (event, gasto) => {
     return new Promise((resolve, reject) => {

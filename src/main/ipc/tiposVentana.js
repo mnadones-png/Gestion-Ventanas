@@ -1,3 +1,8 @@
+/**
+ * Canales IPC para tipos de ventana y materiales asociados.
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerTiposVentanaIpc(ipcMain, db) {
   ipcMain.handle('getTiposVentana', async () => {
     return new Promise((resolve, reject) => {

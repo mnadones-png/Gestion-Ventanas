@@ -1,3 +1,10 @@
+/**
+ * Canales IPC para gestión de presupuestos.
+ * - Alta de presupuestos con creación/uso de cliente por RUT (case-insensitive).
+ * - Listado y eliminación.
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerPresupuestosIpc(ipcMain, db) {
   ipcMain.handle('addPresupuesto', async (event, presupuesto) => {
     const rut = presupuesto.cliente_rut ? presupuesto.cliente_rut.trim() : '';

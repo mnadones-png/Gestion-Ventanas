@@ -1,6 +1,14 @@
+/**
+ * Configuración y creación de ventanas del proceso principal.
+ * Crea la ventana principal con `contextIsolation` y `preload.js`.
+ */
 const { BrowserWindow } = require('electron');
 const path = require('path');
 
+/**
+ * Crea la ventana principal de la aplicación.
+ * @returns {BrowserWindow} instancia de la ventana principal
+ */
 function createMainWindow() {
   const win = new BrowserWindow({
     width: 1100,

@@ -1,5 +1,14 @@
+/**
+ * Canales IPC para abonos (pagos parciales de presupuestos).
+ * Maneja inserción y consulta de abonos ordenados por fecha.
+ */
 const { formatLocalDateTime } = require('../utils/date');
 
+/**
+ * Registra canales relacionados con abonos.
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerAbonosIpc(ipcMain, db) {
   ipcMain.handle('agregarAbono', (event, abono) => {
     return new Promise((resolve, reject) => {

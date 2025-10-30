@@ -1,3 +1,9 @@
+/**
+ * Canales IPC para liquidaciones mensuales.
+ * Permiten generar una liquidación con detalle y recuperar historial ordenado.
+ * @param {import('electron').IpcMain} ipcMain
+ * @param {import('sqlite3').Database} db
+ */
 function registerLiquidacionesIpc(ipcMain, db) {
   ipcMain.handle('generarLiquidacionMensual', (event, liquidacion) => {
     return new Promise((resolve, reject) => {
