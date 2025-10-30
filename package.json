@@ -1,0 +1,33 @@
+{
+  "name": "fabglass",
+  "version": "1.0.0",
+  "description": "App de escritorio para presupuestos y gestión de ventanas de vidrio.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "Martin Adones",
+  "build": {
+    "appId": "FabGlass",
+    "win": {
+      "target": "nsis",
+      "icon": "FabGlass.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "FabGlass.ico",
+      "uninstallerIcon": "FabGlass.ico",
+      "uninstallDisplayName": "FabGlass-Uninstaller",
+      "license": "license.md",
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.12"
+  }
+}
